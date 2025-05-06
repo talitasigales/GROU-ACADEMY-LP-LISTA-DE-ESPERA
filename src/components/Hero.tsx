@@ -1,49 +1,45 @@
 
 import React from 'react';
-import { Button } from '@/components/ui/button';
-import CountdownTimer from './CountdownTimer';
+import EmailSubscription from './EmailSubscription';
 
 const Hero: React.FC = () => {
-  // Defining the dates for the countdown timer (May 8, 2025 00:00 to May 22, 2025 10:00)
-  const startDate = new Date('2025-05-08T00:00:00');
-  const endDate = new Date('2025-05-22T10:00:00');
-
   return (
-    <div className="relative w-full min-h-[85vh] flex flex-col items-center justify-center pt-4 pb-16 overflow-hidden">
-      {/* Background Image with reduced blur */}
+    <div className="relative w-full min-h-[85vh] flex flex-col items-center justify-center py-8 overflow-hidden">
+      {/* Background Image (blurred people image) */}
       <div 
         className="absolute inset-0 z-0" 
         style={{
-          backgroundImage: 'url(/images/hero-bg.jpg)',
+          backgroundImage: 'url(/lovable-uploads/522ef0d6-1605-4dfd-9330-67ff90873e72.png)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          filter: 'blur(4px)', // Reduced blur as requested
-          opacity: 0.15,
+          filter: 'blur(4px)',
+          opacity: 0.4,
         }}
       />
       
-      {/* Content */}
-      <div className="relative z-10 flex flex-col items-center text-center px-4 max-w-6xl mx-auto mt-8 md:mt-0"> {/* Reduced top spacing as requested */}
-        <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-grou-primary leading-tight mb-4">
-          Transforme sua carreira em marketing digital
-        </h1>
-        <p className="text-lg md:text-xl text-grou-secondary max-w-3xl mb-10">
-          O Launchpad da Grou Academy é um programa intensivo que vai te dar as habilidades e conexões necessárias para se destacar no mercado.
-        </p>
-        
-        <CountdownTimer startDate={startDate} endDate={endDate} />
-        
-        <div className="mt-10 flex flex-col md:flex-row gap-4 w-full max-w-md">
-          <Button className="bg-grou-accent hover:bg-grou-accent/90 text-white py-6 text-lg w-full">
-            Quero participar
-          </Button>
+      {/* Decorative dots */}
+      <div className="absolute top-40 left-32 w-2 h-2 bg-grou-cyan rounded-full" />
+      <div className="absolute bottom-60 left-32 w-2 h-2 bg-grou-cyan rounded-full" />
+      <div className="absolute top-40 right-32 w-2 h-2 bg-grou-cyan rounded-full" />
+      <div className="absolute bottom-32 right-32 w-2 h-2 bg-grou-cyan rounded-full" />
+      
+      {/* Main content */}
+      <div className="relative z-10 flex flex-col items-center text-center px-4 max-w-4xl mx-auto mt-12">
+        <div className="mb-24 mt-8">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4">
+            Grou Academy está{' '}
+            <span className="text-grou-cyan">quase no ar</span>
+          </h1>
+          <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto mt-6 mb-10">
+            A mais nova plataforma de cursos sobre gestão de pessoas, RH e 
+            liderança para acelerar futuros e carreiras.
+          </p>
         </div>
         
-        <div className="mt-16 flex flex-wrap justify-center gap-8 md:gap-16">
-          <img src="/images/partner-logo-1.svg" alt="Partner" className="h-8 md:h-10 opacity-70" />
-          <img src="/images/partner-logo-2.svg" alt="Partner" className="h-8 md:h-10 opacity-70" />
-          <img src="/images/partner-logo-3.svg" alt="Partner" className="h-8 md:h-10 opacity-70" />
-          <img src="/images/partner-logo-4.svg" alt="Partner" className="h-8 md:h-10 opacity-70" />
+        <EmailSubscription />
+        
+        <div className="mt-24">
+          <div className="w-20 h-1 bg-white/20 rounded mx-auto" />
         </div>
       </div>
     </div>

@@ -68,6 +68,8 @@ export default {
 					secondary: '#4c5a80',
 					accent: '#0074de',
 					light: '#f2f6ff',
+					dark: '#0A041A',  // Dark purple/blue from the design
+					cyan: '#00E1E7'   // Cyan color for "quase no ar"
 				}
 			},
 			borderRadius: {
