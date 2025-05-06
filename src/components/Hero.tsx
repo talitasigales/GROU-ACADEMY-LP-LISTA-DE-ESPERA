@@ -10,15 +10,15 @@ const Hero: React.FC = () => {
 
   return (
     <div className="relative w-full min-h-[85vh] flex flex-col items-center justify-center py-8 overflow-hidden">
-      {/* Background Image with lighter blur */}
+      {/* Background Image with increased blur */}
       <div 
         className="absolute inset-0 z-0" 
         style={{
-          backgroundImage: 'url(/lovable-uploads/48805839-1a8c-4f20-aea5-2f7eb826a730.png)',
+          backgroundImage: 'url(/lovable-uploads/9273bdbd-e245-4825-be2f-0bea0384c2ac.png)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          filter: 'blur(2px)', // Reduced blur to make image more visible
-          opacity: 0.6, // Increased opacity to see more of the background
+          filter: 'blur(5px)', // Increased blur from 2px to 5px
+          opacity: 0.5, // Adjusted opacity
         }}
       />
       
