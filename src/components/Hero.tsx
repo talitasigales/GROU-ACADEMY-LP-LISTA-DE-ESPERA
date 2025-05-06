@@ -1,19 +1,24 @@
 
 import React from 'react';
 import EmailSubscription from './EmailSubscription';
+import CountdownTimer from './CountdownTimer';
 
 const Hero: React.FC = () => {
+  // Set start and end dates for countdown timer
+  const startDate = new Date('2025-05-08T00:00:00');
+  const endDate = new Date('2025-05-22T10:00:00');
+
   return (
     <div className="relative w-full min-h-[85vh] flex flex-col items-center justify-center py-8 overflow-hidden">
-      {/* Background Image (blurred people image) */}
+      {/* Background Image with lighter blur */}
       <div 
         className="absolute inset-0 z-0" 
         style={{
-          backgroundImage: 'url(/lovable-uploads/522ef0d6-1605-4dfd-9330-67ff90873e72.png)',
+          backgroundImage: 'url(/lovable-uploads/48805839-1a8c-4f20-aea5-2f7eb826a730.png)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          filter: 'blur(4px)',
-          opacity: 0.4,
+          filter: 'blur(2px)', // Reduced blur to make image more visible
+          opacity: 0.6, // Increased opacity to see more of the background
         }}
       />
       
@@ -24,8 +29,8 @@ const Hero: React.FC = () => {
       <div className="absolute bottom-32 right-32 w-2 h-2 bg-grou-cyan rounded-full" />
       
       {/* Main content */}
-      <div className="relative z-10 flex flex-col items-center text-center px-4 max-w-4xl mx-auto mt-12">
-        <div className="mb-24 mt-8">
+      <div className="relative z-10 flex flex-col items-center text-center px-4 max-w-4xl mx-auto mt-6">
+        <div className="mb-16 mt-2">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4">
             Grou Academy está{' '}
             <span className="text-grou-cyan">quase no ar</span>
@@ -34,11 +39,16 @@ const Hero: React.FC = () => {
             A mais nova plataforma de cursos sobre gestão de pessoas, RH e 
             liderança para acelerar futuros e carreiras.
           </p>
+
+          {/* Countdown Timer */}
+          <div className="my-8">
+            <CountdownTimer startDate={startDate} endDate={endDate} />
+          </div>
         </div>
         
         <EmailSubscription />
         
-        <div className="mt-24">
+        <div className="mt-16">
           <div className="w-20 h-1 bg-white/20 rounded mx-auto" />
         </div>
       </div>
