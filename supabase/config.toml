@@ -3,3 +3,4 @@ project_id = "nmgzwxqrfawknamqtxfn"
 
 [functions.sync-subscribers-to-hubspot]
 verify_jwt = false
+

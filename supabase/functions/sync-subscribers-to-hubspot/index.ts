@@ -75,6 +75,24 @@ async function getNewSubscribers(lastSyncedAt: string) {
 }
 
 /**
+ * Get all subscribers for Zapier access
+ */
+async function getAllSubscribers() {
+  const { data, error } = await supabase
+    .from("waitlist_subscribers")
+    .select("email, source, created_at")
+    .order("created_at", { ascending: false })
+    .limit(100);
+  
+  if (error) {
+    console.error("Error fetching subscribers for Zapier:", error);
+    throw error;
+  }
+  
+  return data || [];
+}
+
+/**
  * Format subscribers for HubSpot batch import
  */
 function formatForHubSpot(subscribers: any[]) {
@@ -200,19 +218,41 @@ serve(async (req: Request) => {
   }
   
   try {
-    // Run the sync process
-    const result = await syncSubscribersToHubSpot();
+    // Determine which function to run based on the request
+    const url = new URL(req.url);
     
-    // Return the response
-    return new Response(
-      JSON.stringify(result),
-      { 
-        headers: { 
-          "Content-Type": "application/json",
-          ...corsHeaders
+    // New endpoint for Zapier to access all subscribers
+    if (url.pathname.endsWith('/zapier') || url.searchParams.has('zapier')) {
+      const subscribers = await getAllSubscribers();
+      return new Response(
+        JSON.stringify({
+          success: true,
+          data: subscribers,
+          count: subscribers.length,
+          timestamp: new Date().toISOString()
+        }),
+        { 
+          headers: { 
+            "Content-Type": "application/json",
+            ...corsHeaders
+          }
         }
-      }
-    );
+      );
+    } else {
+      // Default behavior - run the sync process
+      const result = await syncSubscribersToHubSpot();
+      
+      // Return the response
+      return new Response(
+        JSON.stringify(result),
+        { 
+          headers: { 
+            "Content-Type": "application/json",
+            ...corsHeaders
+          }
+        }
+      );
+    }
   } catch (error) {
     console.error("Unhandled error in edge function:", error);
     
