@@ -10,7 +10,7 @@ const EmailSubscription: React.FC = () => {
     setEmail('');
   };
   return <div className="flex flex-col items-center gap-3 max-w-lg mx-auto">
-      <p className="text-lg md:text-xl text-white/90 text-center">Entre para a lista de espera para ganhar acesso antecipado a 3 cursos gratuitos + bônus exclusivos.</p>
+      <p className="text-lg text-white/90 text-center md:text-xl">Entre para a lista de espera para ganhar acesso antecipado a 3 cursos gratuitos + bônus exclusivos!</p>
       
       <form onSubmit={handleSubmit} className="flex w-full max-w-md mt-2">
         <div className="relative flex w-full">

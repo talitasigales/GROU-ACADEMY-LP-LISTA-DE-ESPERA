@@ -28,7 +28,7 @@ const Hero: React.FC = () => {
             O Grou Academy está<br />
             <span className="text-grou-cyan">quase no ar!</span>
           </h1>
-          <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto mt-6 mb-10">A mais nova plataforma de cursos sobre gestão de pessoas, RH e inovação
+          <p className="text-lg text-white/80 max-w-3xl mx-auto mt-6 mb-10 font-normal md:text-2xl">A mais nova plataforma de cursos sobre gestão de pessoas, RH e inovação
 que acelera futuros e desenvolve carreiras</p>
 
           {/* Countdown Timer */}
