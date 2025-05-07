@@ -4,25 +4,81 @@ import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { useToast } from '@/hooks/use-toast';
 import { Gift } from 'lucide-react';
+import { supabase } from '@/integrations/supabase/client';
 
 const EmailSubscription: React.FC = () => {
   const [email, setEmail] = useState('');
   const [showDialog, setShowDialog] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const { toast } = useToast();
   
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would handle the email submission to your backend/database
-    console.log('Email submitted:', email);
     
-    // Show success dialog
-    setShowDialog(true);
+    // Reset error message
+    setErrorMessage('');
     
-    // Show toast notification
-    toast({
-      title: "Inscrição realizada!",
-      description: "Você entrou na lista de espera com sucesso.",
-    });
+    // Basic email validation
+    if (!email || !email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+      setErrorMessage('Por favor, insira um e-mail válido.');
+      return;
+    }
+    
+    setIsSubmitting(true);
+    
+    try {
+      // Insert email into Supabase
+      const { error } = await supabase
+        .from('waitlist_subscribers')
+        .insert([
+          { email: email, source: 'landing_page' }
+        ]);
+      
+      if (error) {
+        console.error('Error saving email:', error);
+        
+        // Handle duplicate email error
+        if (error.code === '23505') {
+          setErrorMessage('Este e-mail já está na lista de espera.');
+          toast({
+            title: "E-mail já cadastrado",
+            description: "Este e-mail já está na nossa lista de espera.",
+            variant: "destructive",
+          });
+        } else {
+          setErrorMessage('Ocorreu um erro. Por favor, tente novamente.');
+          toast({
+            title: "Erro",
+            description: "Não foi possível processar sua inscrição. Por favor, tente novamente.",
+            variant: "destructive",
+          });
+        }
+        setIsSubmitting(false);
+        return;
+      }
+      
+      // Show success dialog and toast
+      setShowDialog(true);
+      toast({
+        title: "Inscrição realizada!",
+        description: "Você entrou na lista de espera com sucesso.",
+      });
+      
+      // Clear form
+      setEmail('');
+      
+    } catch (err) {
+      console.error('Unexpected error:', err);
+      setErrorMessage('Ocorreu um erro inesperado. Por favor, tente novamente.');
+      toast({
+        title: "Erro",
+        description: "Ocorreu um erro inesperado. Por favor, tente novamente.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -46,16 +102,22 @@ const EmailSubscription: React.FC = () => {
               value={email} 
               onChange={e => setEmail(e.target.value)} 
               required 
-              className="flex h-11 w-full rounded-md sm:rounded-l-md sm:rounded-r-none bg-[#1A0942] pl-10 pr-3 text-sm text-white placeholder:text-white/70 focus:outline-none" 
+              className={`flex h-11 w-full rounded-md sm:rounded-l-md sm:rounded-r-none bg-[#1A0942] pl-10 pr-3 text-sm text-white placeholder:text-white/70 focus:outline-none ${errorMessage ? 'border border-red-500' : ''}`} 
+              disabled={isSubmitting}
             />
           </div>
           <Button 
             type="submit" 
             className="h-11 rounded-md sm:rounded-l-none sm:rounded-r-md bg-grou-cyan hover:bg-grou-cyan/90 text-grou-dark font-medium"
+            disabled={isSubmitting}
           >
-            Entrar na lista
+            {isSubmitting ? 'Enviando...' : 'Entrar na lista'}
           </Button>
         </form>
+        
+        {errorMessage && (
+          <p className="text-sm text-red-400 mt-1">{errorMessage}</p>
+        )}
       </div>
 
       {/* Success Dialog */}
