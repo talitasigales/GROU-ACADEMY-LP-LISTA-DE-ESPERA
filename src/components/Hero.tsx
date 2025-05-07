@@ -17,8 +17,8 @@ const Hero: React.FC = () => {
           backgroundImage: 'url(/lovable-uploads/9273bdbd-e245-4825-be2f-0bea0384c2ac.png)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          filter: 'blur(5px)', // Increased blur from 2px to 5px
-          opacity: 0.5, // Adjusted opacity
+          filter: 'blur(5px)',
+          opacity: 0.5,
         }}
       />
       
@@ -32,7 +32,7 @@ const Hero: React.FC = () => {
       <div className="relative z-10 flex flex-col items-center text-center px-4 max-w-4xl mx-auto mt-6">
         <div className="mb-16 mt-2">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4">
-            Grou Academy está{' '}
+            O Grou Academy está<br />
             <span className="text-grou-cyan">quase no ar</span>
           </h1>
           <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto mt-6 mb-10">

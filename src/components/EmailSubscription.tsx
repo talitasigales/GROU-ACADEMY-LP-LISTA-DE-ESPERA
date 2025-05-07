@@ -14,9 +14,9 @@ const EmailSubscription: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center gap-2 max-w-lg mx-auto">
-      <p className="text-white/80 text-center">
-        Deixe seu e-mail para ser avisado no lançamento e garantir bônus exclusivos
+    <div className="flex flex-col items-center gap-3 max-w-lg mx-auto">
+      <p className="text-lg md:text-xl text-white/90 text-center">
+        Entre para a lista de espera para ganhar acesso antecipado a 3 cursos gratuitos e bônus exclusivos
       </p>
       
       <form onSubmit={handleSubmit} className="flex w-full max-w-md mt-2">
@@ -29,7 +29,7 @@ const EmailSubscription: React.FC = () => {
           </div>
           <input
             type="email"
-            placeholder="Seu melhor e-mail"
+            placeholder="Seu e-mail"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -39,7 +39,7 @@ const EmailSubscription: React.FC = () => {
             type="submit"
             className="h-11 rounded-l-none rounded-r-md bg-grou-cyan hover:bg-grou-cyan/90 text-grou-dark font-medium"
           >
-            Quero ser avisado
+            Entrar na lista de espera
           </Button>
         </div>
       </form>
