@@ -7,7 +7,7 @@ import { Toaster } from "@/components/ui/toaster";
 
 const Index: React.FC = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-grou-dark">
+    <div className="min-h-screen flex flex-col bg-grou-dark overflow-x-hidden">
       <Header />
       <main className="flex-grow">
         <Hero />

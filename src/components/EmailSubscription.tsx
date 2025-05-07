@@ -27,12 +27,12 @@ const EmailSubscription: React.FC = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center gap-3 max-w-lg mx-auto">
+      <div className="flex flex-col items-center gap-3 max-w-lg mx-auto px-4">
         <p className="text-lg text-white/90 text-center md:text-xl">
           Entre para a lista de espera para ganhar acesso antecipado a 3 cursos gratuitos + bônus exclusivos!
         </p>
         
-        <form onSubmit={handleSubmit} className="flex w-full max-w-md mt-2">
+        <form onSubmit={handleSubmit} className="flex w-full max-w-md mt-2 flex-col sm:flex-row gap-2 sm:gap-0">
           <div className="relative flex w-full">
             <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-grou-cyan">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-mail">
@@ -46,21 +46,21 @@ const EmailSubscription: React.FC = () => {
               value={email} 
               onChange={e => setEmail(e.target.value)} 
               required 
-              className="flex h-11 w-full rounded-l-md bg-[#1A0942] pl-10 pr-3 text-sm text-white placeholder:text-white/70 focus:outline-none" 
+              className="flex h-11 w-full rounded-md sm:rounded-l-md sm:rounded-r-none bg-[#1A0942] pl-10 pr-3 text-sm text-white placeholder:text-white/70 focus:outline-none" 
             />
-            <Button 
-              type="submit" 
-              className="h-11 rounded-l-none rounded-r-md bg-grou-cyan hover:bg-grou-cyan/90 text-grou-dark font-medium"
-            >
-              Entrar na lista de espera
-            </Button>
           </div>
+          <Button 
+            type="submit" 
+            className="h-11 rounded-md sm:rounded-l-none sm:rounded-r-md bg-grou-cyan hover:bg-grou-cyan/90 text-grou-dark font-medium"
+          >
+            Entrar na lista
+          </Button>
         </form>
       </div>
 
       {/* Success Dialog */}
       <Dialog open={showDialog} onOpenChange={setShowDialog}>
-        <DialogContent className="bg-grou-dark border-grou-cyan text-white max-w-md">
+        <DialogContent className="bg-grou-dark border-grou-cyan text-white max-w-md mx-4">
           <DialogHeader>
             <DialogTitle className="text-2xl font-bold text-grou-cyan flex items-center gap-2 justify-center">
               <Gift className="h-6 w-6 text-grou-cyan" />
