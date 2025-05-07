@@ -1,26 +1,19 @@
-
 import React from 'react';
 import EmailSubscription from './EmailSubscription';
 import CountdownTimer from './CountdownTimer';
-
 const Hero: React.FC = () => {
   // Set start and end dates for countdown timer
   const startDate = new Date('2025-05-08T00:00:00');
   const endDate = new Date('2025-05-22T10:00:00');
-
-  return (
-    <div className="relative w-full min-h-[85vh] flex flex-col items-center justify-center py-8 overflow-hidden">
+  return <div className="relative w-full min-h-[85vh] flex flex-col items-center justify-center py-8 overflow-hidden">
       {/* Background Image with increased blur */}
-      <div 
-        className="absolute inset-0 z-0" 
-        style={{
-          backgroundImage: 'url(/lovable-uploads/9273bdbd-e245-4825-be2f-0bea0384c2ac.png)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          filter: 'blur(5px)',
-          opacity: 0.5,
-        }}
-      />
+      <div className="absolute inset-0 z-0" style={{
+      backgroundImage: 'url(/lovable-uploads/9273bdbd-e245-4825-be2f-0bea0384c2ac.png)',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      filter: 'blur(5px)',
+      opacity: 0.5
+    }} />
       
       {/* Decorative dots */}
       <div className="absolute top-40 left-32 w-2 h-2 bg-grou-cyan rounded-full" />
@@ -33,12 +26,10 @@ const Hero: React.FC = () => {
         <div className="mb-16 mt-2">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4">
             O Grou Academy está<br />
-            <span className="text-grou-cyan">quase no ar</span>
+            <span className="text-grou-cyan">quase no ar!</span>
           </h1>
-          <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto mt-6 mb-10">
-            A mais nova plataforma de cursos sobre gestão de pessoas, RH e 
-            liderança para acelerar futuros e carreiras.
-          </p>
+          <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto mt-6 mb-10">A mais nova plataforma de cursos sobre gestão de pessoas, RH e inovação
+que acelera futuros e desenvolve carreiras</p>
 
           {/* Countdown Timer */}
           <div className="my-8">
@@ -52,8 +43,6 @@ const Hero: React.FC = () => {
           <div className="w-20 h-1 bg-white/20 rounded mx-auto" />
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default Hero;
