@@ -25,19 +25,16 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({ startDate, endDate }) =
   useEffect(() => {
     const calculateTimeLeft = () => {
       const now = new Date();
-      const targetDate = now >= startDate && now <= endDate ? endDate : startDate;
+      const targetDate = endDate; // Always count down to the end date (May 22, 2025, at 10:00 AM)
       const difference = targetDate.getTime() - now.getTime();
       
       if (difference <= 0) {
-        // If we've passed the end date
-        if (now > endDate) {
-          return {
-            days: 0,
-            hours: 0,
-            minutes: 0,
-            seconds: 0,
-          };
-        }
+        return {
+          days: 0,
+          hours: 0,
+          minutes: 0,
+          seconds: 0,
+        };
       }
 
       return {
@@ -55,7 +52,7 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({ startDate, endDate }) =
     setTimeLeft(calculateTimeLeft());
 
     return () => clearInterval(timer);
-  }, [startDate, endDate]);
+  }, [endDate]);
 
   const formatTime = (value: number): string => {
     return value.toString().padStart(2, '0');
