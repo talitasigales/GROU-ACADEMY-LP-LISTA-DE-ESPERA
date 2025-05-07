@@ -9,6 +9,30 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      sync_metadata: {
+        Row: {
+          id: number
+          last_synced_at: string | null
+          records_processed: number | null
+          service_name: string
+          status: string | null
+        }
+        Insert: {
+          id?: number
+          last_synced_at?: string | null
+          records_processed?: number | null
+          service_name: string
+          status?: string | null
+        }
+        Update: {
+          id?: number
+          last_synced_at?: string | null
+          records_processed?: number | null
+          service_name?: string
+          status?: string | null
+        }
+        Relationships: []
+      }
       waitlist_subscribers: {
         Row: {
           created_at: string
