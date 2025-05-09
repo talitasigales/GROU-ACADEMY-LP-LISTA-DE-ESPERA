@@ -28,7 +28,8 @@ const EmailSubscription: React.FC = () => {
     setIsSubmitting(true);
     
     try {
-      // Insert email into Supabase
+      // Insert email into Supabase - note that we no longer need to specify 'Dia'
+      // as we've set a DEFAULT value in the database
       const { error } = await supabase
         .from('waitlist_subscribers')
         .insert([
